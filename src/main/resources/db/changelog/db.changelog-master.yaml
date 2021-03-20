@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+        id: 1
+        author: ehmedowais
+        changes:
+            - sqlFile:
+                dbms: mysql
+                encoding: utf8
+                endDelimiter: \nGO
+                path: sql/01-Create-Tables.sql
+                relativeToChangelogFile: true
+                splitStatements: true
+                stripComments: true
