@@ -1,5 +1,4 @@
-target
-target/*
 catalogmerge.iml
 catalogmerge.ipr
 catalogmerge.iws
+/target/
