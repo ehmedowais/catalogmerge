@@ -33,5 +33,5 @@ public abstract class AbstractCSVParser {
     public void setInputPath(String inputPath) {
         this.inputPath = inputPath;
     }
-    abstract List<CSVEntity> parse() throws IOException;
+    public abstract List<CSVEntity> parse() throws IOException;
 }

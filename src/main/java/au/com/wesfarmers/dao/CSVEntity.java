@@ -1,6 +1,8 @@
 package au.com.wesfarmers.dao;
 
-public class CSVEntity {
+import java.io.Serializable;
+
+public class CSVEntity implements Serializable {
     private String source;
 
     public String getSource() {

@@ -1,11 +1,12 @@
 package au.com.wesfarmers.dao;
 
 import javax.persistence.Column;
-
+import javax.persistence.Id;
 public class Suppliers extends CSVEntity {
-    @Column(name="ID")
+//    @Id
+//    @Column(name="ID")
     private int id;
-    @Column(name="NAME")
+    //@Column(name="NAME")
     private String name;
 
     public int getId() {

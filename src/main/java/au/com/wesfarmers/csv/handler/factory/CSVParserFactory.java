@@ -7,22 +7,22 @@ import au.com.wesfarmers.csv.handler.CatalogParser;
 import au.com.wesfarmers.csv.handler.SuppliersParser;
 import au.com.wesfarmers.exception.InvalidFileNameException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CSVParserFactory {
     @Autowired
-    BarCodeParser barCodeParser;
+    private BarCodeParser barCodeParser;
 
     @Autowired
-    CatalogParser catalogParser;
+    private CatalogParser catalogParser;
 
     @Autowired
-    SuppliersParser suppliersParser;
+    private SuppliersParser suppliersParser;
 
-    private CSVParserFactory() {}
-    private static CSVParserFactory instance = new CSVParserFactory();
-
-    public AbstractCSVParser getParser(String fileName) throws InvalidFileNameException {
+     public AbstractCSVParser getParser(String fileName) throws InvalidFileNameException {
         if(fileName.toLowerCase().matches("catalog[a|b].csv")){
+            catalogParser.setFileName(fileName);
             return catalogParser;
         }
         if(fileName.toLowerCase().matches("barcodes[a|b].csv")) {
@@ -34,7 +34,5 @@ public class CSVParserFactory {
         }
         throw new InvalidFileNameException(Messages.INVALID_FILE_MSG + fileName);
     }
-    public static CSVParserFactory getInstance() {
-        return instance;
-    }
+
 }

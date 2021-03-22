@@ -12,7 +12,7 @@ public class CSVParserFactoryTest {
 
     @Test
     public void getParserShouldThrowExceptionIfFilenameIsWrong() {
-        CSVParserFactory factory = CSVParserFactory.getInstance();
+        CSVParserFactory factory = new CSVParserFactory();
         InvalidFileNameException exception = assertThrows(InvalidFileNameException.class, () -> {
             AbstractCSVParser parser = factory.getParser("barcodesX.csv");
         });

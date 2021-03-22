@@ -6,6 +6,7 @@ import au.com.wesfarmers.dao.SuppliersA;
 import au.com.wesfarmers.dao.SuppliersB;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class SuppliersParser extends AbstractCSVParser {
     enum HEADERS {ID, Name}
     @Override
