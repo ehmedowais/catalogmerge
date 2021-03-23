@@ -1,17 +1,18 @@
 package au.com.wesfarmers.dao;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 
 public class Barcodes extends CSVEntity {
-//    @Id
-//    @Column(name = "SUPPLIER_ID")
+    public Barcodes() {}
+
+    public Barcodes(int supplierId, String sku, String barcode) {
+        this.supplierId = supplierId;
+        this.sku = sku;
+        this.barcode = barcode;
+    }
     private int supplierId;
-//    @Id
-//    @Column(name = "SKU")
+
     private String sku;
-//    @Id
-//    @Column(name = "BARCODE")
+
     private String barcode;
 
 
@@ -44,5 +45,35 @@ public class Barcodes extends CSVEntity {
     public String getBarcode() {
 
         return barcode;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((barcode == null) ? 0 : barcode.hashCode());
+        result = prime * result + ((sku == null) ? 0: sku.hashCode());
+        result = prime * result + supplierId;
+        return result;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Barcodes other = (Barcodes) obj;
+        if (barcode == null) {
+            if (other.barcode != null)
+                return false;
+        } else if (!barcode.equals(other.barcode))
+            return false;
+        else if (!sku.equals(other.sku))
+            return false;
+        if (supplierId != other.supplierId)
+            return false;
+        return true;
     }
 }

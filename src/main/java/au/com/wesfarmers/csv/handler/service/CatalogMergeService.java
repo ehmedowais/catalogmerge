@@ -1,19 +1,21 @@
 package au.com.wesfarmers.csv.handler.service;
 
+import au.com.wesfarmers.constants.Messages;
 import au.com.wesfarmers.csv.handler.AbstractCSVParser;
 import au.com.wesfarmers.csv.handler.factory.CSVParserFactory;
 import au.com.wesfarmers.dao.CSVEntity;
+import au.com.wesfarmers.dao.Catalogs;
 import au.com.wesfarmers.dao.repository.CatalogmergeDAO;
 import au.com.wesfarmers.exception.InvalidFileNameException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.List;
+
+import static java.text.MessageFormat.format;
 
 
 @Component
@@ -30,21 +32,27 @@ public class CatalogMergeService {
     @Autowired
     private CSVParserFactory factory;
 
-    private static Logger logger = Logger.getLogger(CatalogMergeService.class);
+    private static final Logger LOGGER = Logger.getLogger(CatalogMergeService.class);
 
-    public void processCSVFiles(File inputDirLocation) throws InvalidFileNameException, IOException {
-        if (!inputDirLocation.isFile()) {
+    public void processCSVFiles(File file) throws InvalidFileNameException, IOException {
+        if (!file.isFile()) {
            return;
         }
 
 
-        String file = inputDirLocation.getName();
-        if (file.matches("[\\w,\\s-]+\\.[csv]{3}")) {
-            AbstractCSVParser parser = factory.getParser(file);
+        String fileName = file.getName();
+        if (fileName.matches("[\\w,\\s-]+\\.[csv]{3}")) {
+            AbstractCSVParser parser = factory.getParser(fileName);
             List<CSVEntity> entities = parser.parse();
-            dao.addAllSuppliers(entities);
+            dao.addAll(entities);
+            LOGGER.info(format(Messages.FILE_PROCESSED_SUCCESSFULLY,fileName));
         }
 
 
+    }
+
+    public List<Catalogs> generateResults() {
+        List<Catalogs> catalogs = dao.getFinalResult();
+        return catalogs;
     }
 }

@@ -30,6 +30,7 @@ public class CSVParserFactory {
             return barCodeParser;
         }
         if(fileName.toLowerCase().matches("suppliers[a|b].csv")) {
+            suppliersParser.setFileName(fileName);
             return suppliersParser;
         }
         throw new InvalidFileNameException(Messages.INVALID_FILE_MSG + fileName);

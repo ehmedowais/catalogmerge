@@ -1,11 +1,14 @@
 package au.com.wesfarmers.dao;
 
-import javax.persistence.Column;
 
 public class Catalogs extends CSVEntity {
-    //@Column(name="SKU")
+    public Catalogs() {}
+    public Catalogs(String sku,String description, String source) {
+        super.setSource(source);
+        this.sku = sku;
+        this.description = description;
+    }
     private String sku;
-    //@Column(name="DESCRIPTION")
     private String description;
 
     public void setSku(String sku) {
@@ -22,5 +25,10 @@ public class Catalogs extends CSVEntity {
 
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public String toString() {
+        return sku+","+description+","+getSource();
     }
 }
