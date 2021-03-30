@@ -47,7 +47,7 @@ public class ScheduledMonitor {
         for (File file : files) {
             processFile(file);
         }
-        generateOututFile();
+        generateOutputFile();
     }
 
     private void processFile(File file) {
@@ -64,7 +64,7 @@ public class ScheduledMonitor {
         }
     }
 
-    private void generateOututFile() {
+    private void generateOutputFile() {
         String fileName = "result_output.csv";
         List<Catalogs> catalogs = service.generateResults();
         catalogs.forEach(LOGGER::info);
