@@ -41,6 +41,7 @@ public class CatalogMergeService {
 
 
         String fileName = file.getName();
+        //matches word and ,- with spaces and .csv
         if (fileName.matches("[\\w,\\s-]+\\.[csv]{3}")) {
             AbstractCSVParser parser = factory.getParser(fileName);
             List<CSVEntity> entities = parser.parse();
