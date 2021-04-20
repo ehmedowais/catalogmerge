@@ -1,4 +1,4 @@
-#Bunnings Coding Test
+
 To Run this project
 1.  Run mvn spring-boot:run (as this is a spring boot app)
 2.  In this application we have enabled h2 console so you can browse the databae at http://localhost:8080/h2 use sa/sa as credentials 
